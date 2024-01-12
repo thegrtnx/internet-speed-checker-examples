@@ -65,14 +65,14 @@ const DynamicSeo = (index: number): Metadata => {
 		verification: {
 			google: "",
 			other: {
-				me: ["hello@usedothost.com", "usedothost.com"],
+				me: ["hello@thegrtnx.com.ng", "speed.thegrtnx.com.ng"],
 			},
 		},
 		twitter: {
 			card: "summary",
 			title: currentSeoData.LAYOUT_APPLICATION_NAME || "",
 			description: currentSeoData.LAYOUT_SEO_DESCRIPTION || "",
-			creator: "@usedothost",
+			creator: "@thegrtnx",
 			images: ["/images/YTThumbnail.jpg"],
 		},
 		category: "technology",
