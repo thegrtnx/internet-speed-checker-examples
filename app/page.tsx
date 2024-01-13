@@ -1,3 +1,9 @@
+import { ModeToggle } from "@/lib/mode-toggler";
+
 export default function Home() {
-	return <div>Hello</div>;
+	return (
+		<div>
+			<ModeToggle />
+		</div>
+	);
 }

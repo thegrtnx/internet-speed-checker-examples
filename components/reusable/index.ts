@@ -1,3 +1,3 @@
-import Topnav from "./topnav/topnav";
+import Topnav from "./navbar/nav";
 
 export { Topnav };
