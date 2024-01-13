@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import { cn } from "@/lib/utils";
 import { ThemeProvider } from "@/lib/theme-provider";
 import DynamicSeo from "@/lib/DynamicSeo";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -20,7 +21,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 					defaultTheme="system"
 					enableSystem
 					disableTransitionOnChange>
-					<main className="flex flex-col items-center justify-between">{children}</main>
+					<main className="flex flex-col items-center justify-between">
+						{children}
+						<SpeedInsights />
+					</main>
 				</ThemeProvider>
 			</body>
 		</html>
