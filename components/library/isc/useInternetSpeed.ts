@@ -59,6 +59,8 @@ const useInternetSpeed = (): [() => void, InternetSpeed] => {
 				totalBytes += value?.length || 0;
 			}
 
+			URL.revokeObjectURL(url); // Revoke the object URL to free up memory
+
 			const endTime = performance.now();
 			const durationInSeconds = (endTime - startTime) / 1000;
 			const speedBytesPerSecond = totalBytes / durationInSeconds;
@@ -78,7 +80,7 @@ const useInternetSpeed = (): [() => void, InternetSpeed] => {
 		const uploadData = new Array(1024 * 1024).fill("a").join("");
 		const url = "https://httpbin.org/post";
 
-		const startTime = new Date().getTime();
+		const startTime = performance.now();
 
 		try {
 			const response = await fetch(url, {
@@ -90,7 +92,7 @@ const useInternetSpeed = (): [() => void, InternetSpeed] => {
 				throw new Error(`HTTP error! Status: ${response.status}`);
 			}
 
-			const endTime = new Date().getTime();
+			const endTime = performance.now();
 			const durationInSeconds = (endTime - startTime) / 1000;
 
 			const speedBytesPerSecond = uploadData.length / durationInSeconds;
