@@ -1,9 +1,6 @@
-import { ModeToggle } from "@/lib/mode-toggler";
-import { ArrowUpDown } from "lucide-react";
-
 export default function Home() {
 	return (
-		<div>
+		<div className="flex items-center justify-center h-[70vh]">
 			<p>hello</p>
 		</div>
 	);
