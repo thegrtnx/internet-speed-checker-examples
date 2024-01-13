@@ -8,13 +8,16 @@ const NavFooter = () => {
 			<Link
 				target="_blank"
 				href="https://thegrtnx.com.ng">
-				&copy; Abolade Greatness {currentYear} -{" "}
+				&copy; Abolade Greatness {currentYear}{" "}
+			</Link>{" "}
+			-{" "}
+			<span>
 				<Link
 					target="_blank"
 					href="https://github.com/thegrtnx/internet-speed-checker">
 					Licensed under MIT
 				</Link>
-			</Link>
+			</span>
 		</div>
 	);
 };
