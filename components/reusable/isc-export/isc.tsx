@@ -1,26 +1,42 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { ArrowDownToLine, ArrowUpToLine, Wifi, LocateFixed, Tablet } from "lucide-react";
-import { useInternetSpeed } from "@/components/library";
+import speedChecker from "internet-speed-checker";
 
 const Isc = () => {
-	const [startMeasurements, internetSpeed] = useInternetSpeed();
+	const [uploadSpeed, setUploadSpeed] = useState<string | null>(null);
+	const [downloadSpeed, setDownloadSpeed] = useState<string | null>(null);
 
 	useEffect(() => {
-		// Trigger measurements on component load
-		startMeasurements();
-	}, [startMeasurements]);
+		const download = setInterval(() => {
+			const formattedDownloadSpeedString = speedChecker.getFormattedDownloadSpeed();
+
+			setDownloadSpeed(formattedDownloadSpeedString);
+		}, 1000);
+
+		const upload = setInterval(() => {
+			const formattedUploadSpeedString = speedChecker.getFormattedUploadSpeed();
+
+			setUploadSpeed(formattedUploadSpeedString);
+		}, 1000);
+
+		// Cleanup the interval when the component is unmounted
+		return () => {
+			clearInterval(download);
+			clearInterval(upload);
+		};
+	}, []); // Empty dependency array to run the effect only once on mount
 
 	return (
 		<div className="grid lg:flex lg:justify-between gap-10">
 			<p className="inline-flex items-center">
 				<ArrowDownToLine className="mr-1 w-3 h-auto" />
-				{internetSpeed.downloadSpeed} {internetSpeed.downloadUnit}
+				{downloadSpeed}
 			</p>
 			<p className="inline-flex items-center">
 				<ArrowUpToLine className="mr-1 w-3 h-auto" />
-				{internetSpeed.uploadSpeed} {internetSpeed.uploadUnit}
+				{uploadSpeed}
 			</p>
 			<p className="inline-flex items-center">
 				<Wifi className="mr-1 w-3 h-auto" />
